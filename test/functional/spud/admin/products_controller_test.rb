@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SpudCartTest < ActiveSupport::TestCase
+class Spud::Admin::ProductsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
