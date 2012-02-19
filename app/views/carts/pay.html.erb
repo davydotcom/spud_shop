@@ -1,0 +1,55 @@
+<h1>Checkout</h1>
+
+<%=form_for @order, :url => pay_cart_path() do |f|%>
+
+<fieldset class="checkout_payment">
+	<legend>Payment Information</legend>
+	<ol>
+		
+		<li>
+			<%=f.label :card_type%>
+			<%= f.select :card_type, [["Visa","visa"],["MasterCard","master"],["Discover","discover"],["American Express","american_express"]] %>
+				
+		</li>
+		<li>
+			<%=f.label :card_number%>
+			<%=f.text_field :card_number%>
+		</li>
+		<li>
+			<%=f.label :card_verification, "CCV"%>
+			<%=f.text_field :card_verification,:size => 3%>
+		</li>
+		<li>
+			<%=f.label :card_expires_at%>
+			<%=f.date_select :card_expires_at, :discard_day => true,:start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+		</li>
+	</ol>
+</fieldset>
+<fieldset>
+	<legend>Shipping Method</legend>
+	<ol>
+		<li>
+			<%=f.label :shipping_method%>
+			<%=f.select :shipping_method,@shipping_options%>
+		</li>
+	</ol>
+</fieldset>
+<fieldset class="totals">
+	<legend>Receipt Summary</legend>
+	<ol>
+		<li><label>Subtotal</label>
+		<p><%= number_to_currency @order.subtotal_price, :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %></p>
+		</li>
+		<li><label>Tax</label><p>
+		<%= number_to_currency @order.tax_price , :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %>
+		</p>
+		</li>
+		<li><label>Total (before shipping)</label>
+			<p><%= number_to_currency @order.total_price , :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %></p>
+		</li>
+	</ol>
+</fieldset>
+<fieldset class="submit">
+	<%=f.submit "Finish Checkout"%> &nbsp;<strong>Total: </strong><%= number_to_currency @current_cart.subtotal, :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %>
+</fieldset>
+<%end%>

@@ -1,0 +1,56 @@
+<h1>Cart</h1>
+
+<%if @current_cart.spud_cart_items.blank?%>
+	<p>Your cart is currently empty</p>
+<%else%>
+	<%=form_for @current_cart,:url => cart_path(@current_cart) do |f|%>
+	<table>
+		<thead>
+			<tr>
+				<% if Spud::Shop.use_item_number%>
+					<th>Item #</th>
+				<%end%>
+				<th>Name</th>
+				<th>Description</th>
+				<th>List Price</th>
+				<th>Quantity</th>
+				<th>Ext. Price</th>
+				<th>Remove?</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<%=f.fields_for :spud_cart_items do |i|%>				
+				<tr>
+					<% if Spud::Shop.use_item_number%>
+						<td><%=i.object.spud_product.item_number%></td>
+					<%end%>
+					<td><%=i.object.spud_product.name%></td>
+					<td><%=i.object.spud_product.description%></td>
+					<td align="right"><%= number_to_currency i.object.unit_price, :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %></td>
+					<td><%=i.text_field :quantity,:size=>3%></td>
+					
+					<td align="right"><%= number_to_currency i.object.full_price, :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %></td>
+					<td>
+						<%=i.check_box :_destroy%>
+					</td>
+					</tr>
+			<%end%>
+			<tr>
+				<td colspan="<%= Spud::Shop.use_item_number ? 5 : 4%>" align="right">Subtotal:</td>
+				<td align="right"><%=number_to_currency @current_cart.subtotal, :unit => Spud::Shop.currency_symbol + " ", :precision => 2%></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="<%= Spud::Shop.use_item_number ? 7 : 6%>"><%=f.submit "Update Cart"%>
+				 <%=link_to "Checkout",checkout_cart_path()%>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	<p>
+		<%=link_to "Add This To Cart",add_cart_path(:product_id => 3,:quantity => 1)%>
+	</p>
+	<%end%>
+<%end%>

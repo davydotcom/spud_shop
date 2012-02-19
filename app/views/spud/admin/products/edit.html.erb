@@ -1,0 +1,3 @@
+<%= form_for @product, :url => spud_admin_product_path(:id => @product.id), :html => {:class => 'right_aligned_form'} do |f| %>	
+	<%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>

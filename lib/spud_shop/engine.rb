@@ -1,4 +1,6 @@
 require 'spud_shop'
+require 'active_merchant'
+require 'active_shipping'
 module Spud
 	module Shop
 		 class Engine < Rails::Engine

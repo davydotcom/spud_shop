@@ -1,0 +1,79 @@
+<% if @product.errors.any? %>
+  <div class="spud_admin_form_error_list">
+    <h4><%= pluralize(@product.errors.count, "error") %> prohibited you from saving this product:</h4>
+    <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<fieldset>
+  <legend>Product Information</legend>
+  <ol>
+    <% if Spud::Shop.use_item_number%>
+      <li>
+        <%= f.label :item_number%>
+        <%= f.text_field :item_number%>
+      </li>
+    <%end%>
+    <li>
+      <%= f.label :name%>
+      <%= f.text_field :name%>
+    </li>
+    <li>
+      <%= f.label :description%>
+      <%= f.text_area :description,:cols => 70,:rows => 5%>
+    </li>
+  </ol>
+</fieldset>
+
+<fieldset>
+  <legend>Pricing</legend>
+  <ol>
+
+    <li>
+      <%= f.label :base_price%>
+      <%= f.text_field :base_price%>
+    </li>
+    <li>
+      <%= f.label :active%>
+      <%= f.check_box :active%>
+    </li>
+  </ol>
+</fieldset>
+<%if Spud::Shop.shipping_enabled%>
+  <fieldset>
+    <legend>Shipping</legend>
+    <ol>
+      <%if Spud::Shop.fixed_shipping%>
+        <li>
+          <%= f.label :fixed_ship_cost,"Shipping Cost"%>
+          <%= f.text_field :fixed_ship_cost%>
+        </li>
+      <%else%>
+        <li>
+          <%= f.label :package_weight,"Weight (lbs)"%>
+          <%= f.text_field :package_weight%>
+        </li>
+        <li>
+          <%= f.label :package_length,"Length (in)"%>
+          <%= f.text_field :package_length%>
+        </li>
+        <li>
+          <%= f.label :package_width,"Width (in)"%>
+          <%= f.text_field :package_width%>
+        </li>
+        <li>
+          <%= f.label :package_height,"Height (in)"%>
+          <%= f.text_field :package_height%>
+        </li>
+      <%end%>
+      
+    </ol>
+  </fieldset>
+<%end%>
+  <fieldset class="submit">
+    <%= f.submit %> or <%= link_to "cancel",request.referer %>
+  </fieldset>

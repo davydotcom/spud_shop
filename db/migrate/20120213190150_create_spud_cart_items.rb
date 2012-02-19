@@ -10,6 +10,6 @@ class CreateSpudCartItems < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :spud_cart_items, :cart_id
+    add_index :spud_cart_items, :spud_cart_id
   end
 end

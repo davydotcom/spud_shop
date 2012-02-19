@@ -1,0 +1,101 @@
+<h1>Checkout</h1>
+
+<%=form_for @order, :url => pay_cart_path() do |f|%>
+
+<fieldset class="checkout_billing">
+	<legend>Billing Information</legend>
+	<ol>
+		<li>
+			<%=f.label :first_name%>
+			<%=f.text_field :first_name%>
+		</li>
+		<li>
+			<%=f.label :last_name%>
+			<%=f.text_field :last_name%>
+		</li>
+		<li>
+			<%=f.label :bill_address1,"Address"%>
+			<%=f.text_field :bill_address1%>
+		</li>
+		<li>
+			<%=f.label :bill_address2,"Address 2"%>
+			<%=f.text_field :bill_address2%>
+		</li>
+		<li>
+			<%=f.label :bill_city,"City"%>
+			<%=f.text_field :bill_city%>
+		</li>
+		<li>
+			<%=f.label :bill_state,"State"%>
+			<%=f.text_field :bill_state,:size => 3%>
+		</li>
+		<li>
+			<%=f.label :bill_zip,"Zip Code"%>
+			<%=f.text_field :bill_zip%>
+		</li>
+		<li>
+			<%=f.label :bill_country,"Country"%>
+			<%=f.select :bill_country,Spud::Shop.shipping_countries%>
+		</li>
+	</ol>
+</fieldset>
+<fieldset class="checkout_shipping">
+	<legend>Shipping Information</legend>
+	<ol>
+		<li class="ship_same">
+			<%=f.label :ship_same_as_billing, "Shipping Sames as Billing"%>
+			<%=f.check_box :ship_same_as_billing%>
+		</li>
+		<li>
+			<%=f.label :shipping_address1,"Address"%>
+			<%=f.text_field :shipping_address1%>
+		</li>
+		<li>
+			<%=f.label :shipping_address2,"Address 2"%>
+			<%=f.text_field :shipping_address2%>
+		</li>
+		<li>
+			<%=f.label :shipping_city,"City"%>
+			<%=f.text_field :shipping_city%>
+		</li>
+		<li>
+			<%=f.label :shipping_state, "State"%>
+			<%=f.text_field :shipping_state,:size => 3%>
+		</li>
+		<li>
+			<%=f.label :shipping_zip, "Zip Code"%>
+			<%=f.text_field :shipping_zip%>
+		</li>
+		<li>
+			<%=f.label :shipping_country,"Country"%>
+			<%=f.select :shipping_country,Spud::Shop.shipping_countries%>
+		</li>
+		<li>
+			<%=f.label :shipping_phone, "Phone"%>
+			<%=f.text_field :shipping_phone%>
+		</li>
+		<li>
+			<%=f.label :shipping_notes, "Notes"%>
+			<%=f.text_area :shipping_notes,:rows=>4%>
+		</li>
+	</ol>
+</fieldset>
+<fieldset class="totals">
+	<legend>Receipt Summary</legend>
+	<ol>
+		<li><label>Subtotal</label>
+		<p><%= number_to_currency @current_cart.subtotal, :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %></p>
+		</li>
+		<li><label>Tax</label><p>
+		<%= number_to_currency (@current_cart.subtotal * (Spud::Shop.sales_tax_rate)).round(2) , :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %>
+		</p>
+		</li>
+		<li><label>Total (before shipping)</label>
+			<p><%= number_to_currency @current_cart.subtotal+(@current_cart.subtotal * (Spud::Shop.sales_tax_rate)).round(2) , :unit => Spud::Shop.currency_symbol + " ", :precision => 2 %></p>
+		</li>
+	</ol>
+</fieldset>
+<fieldset class="submit">
+	<%=f.submit "Continue Checkout"%>
+</fieldset>
+<%end%>

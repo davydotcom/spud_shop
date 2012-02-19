@@ -4,6 +4,14 @@ Rails.application.routes.draw do
 			resources :products
 		end
 	end
+
+	resource :cart do
+		member do
+			get 'add'
+			get 'checkout'
+			post 'pay'
+		end
+	end
    
 end
 

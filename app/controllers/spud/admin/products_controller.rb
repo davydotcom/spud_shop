@@ -1,4 +1,6 @@
 class Spud::Admin::ProductsController < Spud::Admin::ApplicationController
+	layout 'spud/admin/detail'
+
 	belongs_to_spud_app :products
 	before_filter :load_product,:only => [:edit,:update,:destroy,:show]
 	add_breadcrumb "Products", :spud_admin_products_path
