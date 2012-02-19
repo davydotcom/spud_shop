@@ -7,6 +7,8 @@ begin
         gem.add_dependency 'spud_core', '>= 0.5.3'
         gem.add_dependency 'activemerchant'
         gem.add_dependency 'active_shipping'
+	gem.authors = 'David Estes'
+	gem.emails = 'destes@redwindsw.com'
         # other fields that would normally go in your gemspec
         # like authors, email and has_rdoc can also be included here
 	end
