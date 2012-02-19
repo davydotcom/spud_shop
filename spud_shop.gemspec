@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.date = "2012-02-16"
+  s.date = "2012-02-19"
   s.files = [
     "app/assets/javascripts/cart.js",
     "app/assets/javascripts/carts.js",
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "app/models/spud_product.rb",
     "app/models/spud_product_price.rb",
     "app/views/carts/checkout.html.erb",
+    "app/views/carts/pay.html.erb",
     "app/views/carts/show.html.erb",
     "app/views/spud/admin/products/_form.html.erb",
     "app/views/spud/admin/products/edit.html.erb",
@@ -51,16 +52,16 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<spud_core>, [">= 0.5.0"])
+      s.add_runtime_dependency(%q<spud_core>, [">= 0.5.3"])
       s.add_runtime_dependency(%q<activemerchant>, [">= 0"])
       s.add_runtime_dependency(%q<active_shipping>, [">= 0"])
     else
-      s.add_dependency(%q<spud_core>, [">= 0.5.0"])
+      s.add_dependency(%q<spud_core>, [">= 0.5.3"])
       s.add_dependency(%q<activemerchant>, [">= 0"])
       s.add_dependency(%q<active_shipping>, [">= 0"])
     end
   else
-    s.add_dependency(%q<spud_core>, [">= 0.5.0"])
+    s.add_dependency(%q<spud_core>, [">= 0.5.3"])
     s.add_dependency(%q<activemerchant>, [">= 0"])
     s.add_dependency(%q<active_shipping>, [">= 0"])
   end
