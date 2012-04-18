@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  spud_attribute_id: 1
+  spud_product_id: 1
+  value: MyText
+
+two:
+  spud_attribute_id: 1
+  spud_product_id: 1
+  value: MyText

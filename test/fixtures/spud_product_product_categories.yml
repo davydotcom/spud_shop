@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  spud_product_id: 1
+  spud_product_categoriy_id: 1
+
+two:
+  spud_product_id: 1
+  spud_product_categoriy_id: 1
